@@ -76,10 +76,11 @@ document.addEventListener('DOMContentLoaded', function() {
 						b.status = 0;
 						score++;
 						if (score == brickCol * brickRow) {
-							//our modal will show up here if the game is won
-							modal.innerHtml = 'You Won! Keanu is very proud.';
-							toggleClass(modal, 'show');
-							document.location.reload();
+                            //our modal will show up here if the game is won
+                            alert("You Won! Keanu is very proud.")
+							// modal.innerHtml = 'You Won! Keanu is very proud.';
+							// toggleClass(modal, 'show');
+							// document.location.reload();
 						}
 					}
 				}
@@ -135,12 +136,14 @@ document.addEventListener('DOMContentLoaded', function() {
 	//keeping track of our score (amount of bricks broken) and our health
 	function scoreTracker() {
 		ctx.font = '20px Helvetica';
-		ctx.fillStyle = 'red';
+        ctx.fillStyle = 'red';
+        //this displays our score as displays it on the canvas at the x and y axis inout at the end of the line
 		ctx.fillText('Score: ' + score, 8, 20);
 	}
 	function healthTracker() {
 		ctx.font = '20px Helvetica';
-		ctx.fillStyle = 'red';
+        ctx.fillStyle = 'red';
+        //this displays our health as displays it on the canvas at the x and y axis inout at the end of the line
 		ctx.fillText('Health: ' + health, canvas.width - 85, 20);
 	}
 	//this function pulls in the rest of the functions and creates them
@@ -168,9 +171,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     health--;
                     //if statement saying if our helath runs out, the game is over
                     if (!health) {
+                        alert("Game Over. Keanu wouldn't want you to give up. Play Again?")
                         //why doesnt my modal work
-                        modal.innerHTML = "Game Over. Keanu wouldn't want you to give up. Play again?";
-                        toggleClass(modal, 'show');
+                        // modal.innerHTML = "Game Over. Keanu wouldn't want you to give up. Play again?";
+                        // toggleClass(modal, 'show');
                         document.location.reload();
                         clearInterval(interval);
 				} else {
@@ -197,6 +201,8 @@ document.addEventListener('DOMContentLoaded', function() {
         //informing our browser we would like to animate our game and create all our elements
 		requestAnimationFrame(create);
 	}
-
+    function toggleClass(target, modal){
+        target.classList.toggle(modal)
+      }
 	create();
 });

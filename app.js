@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	//a function to detect a wall hit
 	//detects the x and y position of the ball are greater that the positions on the axis of the brick
 	//detects the x and y position of the ball is less than  the positions on the axis of the brick plus width and height
-	function wallHit() {
+	function collision() {
 		for (let c = 0; c < brickRow; c++) {
 			for (let r = 0; r < brickCol; r++) {
 				let b = bricks[c][r];
@@ -155,7 +155,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		createBoard();
 		scoreTracker();
 		healthTracker();
-		wallHit();
+		collision();
 
 		//if statements to keep our ball moving( or to continue to create the illusion it is moving)
 		if (x + xAdd > canvas.width - ballSize || x + xAdd < ballSize) {

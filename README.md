@@ -84,7 +84,35 @@ So we declared our variables above, but nothing is actually happening yet. We ha
 ```javascript
 
 ```
-=======
 
->>>>>>> dccf1fbf7c0133040aad244b370299e64b97df37
+
+## How do we tell our game we have hit a brick?
+
+
+Here, we look for a collision between our ball and a brick. This function also lets the game know that, if all the bricks have been broken, we have a winner!
+
+```javascript
+            function collision() {
+		for (let c = 0; c < brickRow; c++) {
+			for (let r = 0; r < brickCol; r++) {
+				let b = bricks[c][r];
+            if (b.status == 1) {
+					if (x > b.x && x < b.x + brickWidth && y > b.y && y < b.y + brickHeight) {
+						ySub = -ySub;
+						b.status = 0;
+						score++;
+						if (score == brickCol * brickRow) {
+                            
+                            alert("You Won! Keanu is very proud. Play again?")
+							
+						}
+					}
+				}
+			}
+		}
+	}
+
+```
+
+
 

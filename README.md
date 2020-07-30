@@ -55,6 +55,7 @@ Whenever you are creating any project that involves code, you should follow some
     4. DRY code ( Don't repeat yourself)
 
 I also always throw a console.log at the very top of my JavaScript. That way I know right away whether or not my files are all connected.
+<<<<<<< HEAD
 
 
 ## Let's get coding!
@@ -83,4 +84,7 @@ So we declared our variables above, but nothing is actually happening yet. We ha
 ```javascript
 
 ```
+=======
+
+>>>>>>> dccf1fbf7c0133040aad244b370299e64b97df37
 

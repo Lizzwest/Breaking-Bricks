@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # Breaking-Bricks
 This is my Project 1 For SEI 7/13
 I will be creating a game called Breaking Bricks using canvas.

@@ -229,6 +229,7 @@ The * indicates a universal selector for browsers, saying we want all elements z
 
 https://www.w3schools.com/graphics/canvas_intro.asp
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/PI
+https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/beginPath
 
 And that's the game! You can check out the full code in the files of this repo.
 If you want to play my version, it is hosted at the link below.

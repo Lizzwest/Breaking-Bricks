@@ -63,9 +63,8 @@ document.addEventListener('DOMContentLoaded', function() {
 		}
 	}
 
-	//a function to detect a wall hit
-	//detects the x and y position of the ball are greater that the positions on the axis of the brick
-	//detects the x and y position of the ball is less than  the positions on the axis of the brick plus width and height
+
+	//a fucntion to detect if our bricks have been hit. If all bricks are hit, the game is over
 	function collision() {
 		for (let c = 0; c < brickRow; c++) {
 			for (let r = 0; r < brickCol; r++) {
@@ -118,7 +117,6 @@ document.addEventListener('DOMContentLoaded', function() {
 	function createBricks() {
 		for (let c = 0; c < brickRow; c++) {
 			for (let r = 0; r < brickCol; r++) {
-				//checking if our bricks have been hit or not. If hit, they are removed
 				if (bricks[c][r].status == 1) {
 					let brickX = r * (brickWidth + brickPad) + brickPushLeft;
 					let brickY = c * (brickHeight + brickPad) + brickPushTop;
@@ -169,7 +167,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 } else {
                     // else statement saying our health goes down by one everytime the ball misses the board
                     health--;
-                    //if statement saying if our helath runs out, the game is over
+                    //if statement saying if our health runs out, the game is over
                     if (!health) {
                         alert("Game Over. Keanu wouldn't want you to give up. Play Again?")
                         //why doesnt my modal work
@@ -201,8 +199,8 @@ document.addEventListener('DOMContentLoaded', function() {
         //informing our browser we would like to animate our game and create all our elements
 		requestAnimationFrame(create);
 	}
-    function toggleClass(target, modal){
-        target.classList.toggle(modal)
-      }
+    // function toggleClass(target, modal){
+    //     target.classList.toggle(modal)
+    //   }
 	create();
 });

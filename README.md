@@ -3,7 +3,8 @@
 This is my Project 1 For SEI 7/13
 I will be creating a game called Breaking Bricks using canvas.
 
-
+-TL;DR
+Breaking bricks is a simple game with a board, a ball for it to bounce off of, and bricks for the ball to break. I will be using HTML, CSS and JavaScript to create the game.
 ## Let's get started
 
 Our first step to creating our game is our HTML. We should start with a basic boilerplate, as well as a couple lines to define our canvas, and to connect our JavaScript and our CSS.
@@ -223,6 +224,11 @@ canvas {
 ```
 
 The * indicates a universal selector for browsers, saying we want all elements zero margin and padding. This makes sure our game looks the same on all browsers. I add a background image for my game, gave it minor styling to have it centered and covering my whole canvas and that there was no empty space on any side of it.
+
+#### Here is a list of Websites used to assist.
+
+https://www.w3schools.com/graphics/canvas_intro.asp
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/PI
 
 And that's the game! You can check out the full code in the files of this repo.
 If you want to play my version, it is hosted at the link below.

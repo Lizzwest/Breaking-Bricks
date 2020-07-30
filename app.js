@@ -33,7 +33,8 @@ document.addEventListener('DOMContentLoaded', function() {
 	let brickHeight = 40;
 	let brickPad = 10;
 	let brickPushTop = 30;
-	let brickPushLeft = 30;
+    let brickPushLeft = 30;
+    let status;
 	//event listeners for our left and right arrow keys. Will detect when pressed and released
 	document.addEventListener('keydown', keyPress, false);
 	document.addEventListener('keyup', keyRelease, false);

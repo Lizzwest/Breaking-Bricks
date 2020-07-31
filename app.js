@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	let ballSize = 20;
 	// the player stats
 	let score = 0;
-	let health = 6;
+	let health = 5;
 	//declaring my left and right key as false,
 	// because they aren't in use until the game starts
 	let rightKey = false;

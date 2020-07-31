@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	let ballSize = 20;
 	// the player stats
 	let score = 0;
-	let health = 6;
+	let health = 2;
 	//declaring my left and right key as false,
 	// because they aren't in use until the game starts
 	let rightKey = false;
@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	let brickPad = 10;
 	let brickPushTop = 30;
     let brickPushLeft = 30;
-    let status;
+    let modal = document.getElementById("modal")
 	//event listeners for our left and right arrow keys. Will detect when pressed and released
 	document.addEventListener('keydown', keyPress, false);
 	document.addEventListener('keyup', keyRelease, false);
@@ -77,9 +77,9 @@ document.addEventListener('DOMContentLoaded', function() {
 						score++;
 						if (score == brickCol * brickRow) {
                             //our modal will show up here if the game is won
-                            alert("You Won! Keanu is very proud.")
-							// modal.innerHtml = 'You Won! Keanu is very proud.';
-							// toggleClass(modal, 'show');
+                           // alert("You Won! Keanu is very proud.")
+							 modal.innerHTML = 'You Won! Keanu is very proud.';
+							 toggleClass(modal, 'show');
 							// document.location.reload();
 						}
 					}
@@ -170,12 +170,13 @@ document.addEventListener('DOMContentLoaded', function() {
                     health--;
                     //if statement saying if our health runs out, the game is over
                     if (!health) {
-                        alert("Game Over. Keanu wouldn't want you to give up. Play Again?")
+                        //alert("Game Over. Keanu wouldn't want you to give up. Play Again?")
+                        
                         //why doesnt my modal work
-                        // modal.innerHTML = "Game Over. Keanu wouldn't want you to give up. Play again?";
-                        // toggleClass(modal, 'show');
-                        document.location.reload();
-                        clearInterval(interval);
+                         modal.innerHTML = "Game Over. Keanu wouldn't want you to give up.";
+                        toggleClass(modal, 'show');
+                        //document.location.reload();      e.preventDefault()  keep this is mind
+                        //clearInterval(interval);
 				} else {
 					//if we still have health, continue to move out ball on the screen
 					x = canvas.width / 2;
@@ -198,10 +199,14 @@ document.addEventListener('DOMContentLoaded', function() {
 		x += xAdd;
         y += ySub;
         //informing our browser we would like to animate our game and create all our elements
-		requestAnimationFrame(create);
+        if(health > 0){
+            requestAnimationFrame(create);
+        }
+        
 	}
-    // function toggleClass(target, modal){
-    //     target.classList.toggle(modal)
-    //   }
-	create();
+    function toggleClass(target, modal){
+         target.classList.toggle(modal)
+       }
+    create();
+    
 });

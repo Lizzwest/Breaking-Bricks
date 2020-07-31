@@ -5,10 +5,10 @@ document.addEventListener('DOMContentLoaded', function() {
 	//get context; this game is two dimensional
 	let ctx = canvas.getContext('2d');
 	//declare ball size (can be changed to any size)
-	let ballSize = 20;
+	let ballSize = 10;
 	// the player stats
 	let score = 0;
-	let health = 2;
+	let health = 6;
 	//declaring my left and right key as false,
 	// because they aren't in use until the game starts
 	let rightKey = false;
@@ -34,7 +34,8 @@ document.addEventListener('DOMContentLoaded', function() {
 	let brickPad = 10;
 	let brickPushTop = 30;
     let brickPushLeft = 30;
-    let modal = document.getElementById("modal")
+    let gameIsActive = true
+	let modal = document.getElementById('modal');
 	//event listeners for our left and right arrow keys. Will detect when pressed and released
 	document.addEventListener('keydown', keyPress, false);
 	document.addEventListener('keyup', keyRelease, false);
@@ -55,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			leftKey = false;
 		}
 	}
-    //filling in our empty rows and columns with bricks
+	//filling in our empty rows and columns with bricks
 	let bricks = [];
 	for (let c = 0; c < brickRow; c++) {
 		bricks[c] = [];
@@ -63,7 +64,6 @@ document.addEventListener('DOMContentLoaded', function() {
 			bricks[c][r] = { x: 0, y: 0, status: 1 };
 		}
 	}
-
 
 	//a fucntion to detect if our bricks have been hit. If all bricks are hit, the game is over
 	function collision() {
@@ -75,11 +75,12 @@ document.addEventListener('DOMContentLoaded', function() {
 						ySub = -ySub;
 						b.status = 0;
 						score++;
-						if (score == brickCol * brickRow) {
-                            //our modal will show up here if the game is won
-                           // alert("You Won! Keanu is very proud.")
-							 modal.innerHTML = 'You Won! Keanu is very proud.';
-							 toggleClass(modal, 'show');
+						if (score == brickCol * brickRow ) {
+							//our modal will show up here if the game is won
+							// alert("You Won! Keanu is very proud.")
+							modal.innerHTML = 'You Won! Keanu is very proud.';
+                            toggleClass(modal, 'show');
+                            gameIsActive = false
 							// document.location.reload();
 						}
 					}
@@ -99,7 +100,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		//https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/PI
 		ctx.arc(x, y, ballSize, 0, Math.PI * 2);
 		//pick our ball color
-		ctx.fillStyle = 'hotpink';
+		ctx.fillStyle = 'rgb(92, 10, 10)';
 		//color it in
 		ctx.fill();
 		ctx.closePath();
@@ -109,7 +110,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	function createBoard() {
 		ctx.beginPath();
 		ctx.rect(boardX, canvas.height - boardHeight, boardWidth, boardHeight);
-		ctx.fillStyle = 'aqua';
+		ctx.fillStyle = 'rgb(92, 10, 10)';
 		ctx.fill();
 		ctx.closePath();
 	}
@@ -125,7 +126,7 @@ document.addEventListener('DOMContentLoaded', function() {
 					bricks[c][r].y = brickY;
 					ctx.beginPath();
 					ctx.rect(brickX, brickY, brickWidth, brickHeight);
-					ctx.fillStyle = 'yellowgreen';
+					ctx.fillStyle = 'rgb(92, 10, 10)';
 					ctx.fill();
 					ctx.closePath();
 				}
@@ -135,14 +136,14 @@ document.addEventListener('DOMContentLoaded', function() {
 	//keeping track of our score (amount of bricks broken) and our health
 	function scoreTracker() {
 		ctx.font = '20px Helvetica';
-        ctx.fillStyle = 'red';
-        //this displays our score as displays it on the canvas at the x and y axis inout at the end of the line
+		ctx.fillStyle = 'red';
+		//this displays our score as displays it on the canvas at the x and y axis inout at the end of the line
 		ctx.fillText('Score: ' + score, 8, 20);
 	}
 	function healthTracker() {
 		ctx.font = '20px Helvetica';
-        ctx.fillStyle = 'red';
-        //this displays our health as displays it on the canvas at the x and y axis inout at the end of the line
+		ctx.fillStyle = 'red';
+		//this displays our health as displays it on the canvas at the x and y axis inout at the end of the line
 		ctx.fillText('Health: ' + health, canvas.width - 85, 20);
 	}
 	//this function pulls in the rest of the functions and creates them
@@ -159,24 +160,25 @@ document.addEventListener('DOMContentLoaded', function() {
 		//if statements to keep our ball moving( or to continue to create the illusion it is moving)
 		if (x + xAdd > canvas.width - ballSize || x + xAdd < ballSize) {
 			xAdd = -xAdd;
-		}   //nested if statement, speaking on the y axis instead of the x axis above
-            if (y + ySub < ballSize) {
-                ySub = -ySub;
-            } else if (y + ySub > canvas.height - ballSize) {
-                if (x > boardX && x < boardX + boardWidth) {
-                    ySub = -ySub;
-                } else {
-                    // else statement saying our health goes down by one everytime the ball misses the board
-                    health--;
-                    //if statement saying if our health runs out, the game is over
-                    if (!health) {
-                        //alert("Game Over. Keanu wouldn't want you to give up. Play Again?")
-                        
-                        //why doesnt my modal work
-                         modal.innerHTML = "Game Over. Keanu wouldn't want you to give up.";
-                        toggleClass(modal, 'show');
-                        //document.location.reload();      e.preventDefault()  keep this is mind
-                        //clearInterval(interval);
+		} //nested if statement, speaking on the y axis instead of the x axis above
+		if (y + ySub < ballSize) {
+			ySub = -ySub;
+		} else if (y + ySub > canvas.height - ballSize) {
+			if (x > boardX && x < boardX + boardWidth) {
+				ySub = -ySub;
+			} else {
+				// else statement saying our health goes down by one everytime the ball misses the board
+				health--;
+				//if statement saying if our health runs out, the game is over
+				if (!health) {
+					//alert("Game Over. Keanu wouldn't want you to give up. Play Again?")
+
+					//why doesnt my modal work
+					modal.innerHTML = "Game Over. Keanu wouldn't want you to give up.";
+                    toggleClass(modal, 'show');
+                    gameIsActive = false;
+					//document.location.reload();      e.preventDefault()  keep this is mind
+					//clearInterval(interval);
 				} else {
 					//if we still have health, continue to move out ball on the screen
 					x = canvas.width / 2;
@@ -197,16 +199,14 @@ document.addEventListener('DOMContentLoaded', function() {
 		}
 		//redefining x and y to keep our ball moving
 		x += xAdd;
-        y += ySub;
-        //informing our browser we would like to animate our game and create all our elements
-        if(health > 0){
-            requestAnimationFrame(create);
-        }
-        
+		y += ySub;
+		//informing our browser we would like to animate our game and create all our elements
+		if (health > 0 && gameIsActive) {
+			requestAnimationFrame(create);
+		}
 	}
-    function toggleClass(target, modal){
-         target.classList.toggle(modal)
-       }
-    create();
-    
+	function toggleClass(target, modal) {
+		target.classList.toggle(modal);
+	}
+	create();
 });

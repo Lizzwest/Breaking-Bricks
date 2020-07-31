@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	//get context; this game is two dimensional
 	let ctx = canvas.getContext('2d');
 	//declare ball size (can be changed to any size)
-	let ballSize = 10;
+	let ballSize = 20;
 	// the player stats
 	let score = 0;
 	let health = 6;
@@ -16,14 +16,14 @@ document.addEventListener('DOMContentLoaded', function() {
 	//define x and y variables. this tells our ball where to show up on our page
 	//I want the ball to start in the middle, at the very bottom
 	let x = canvas.width / 2;
-	let y = canvas.height - 10;
+	let y = canvas.height -20;
 	//create our ball movement (can change the numbers to increase speed)
 	let xAdd = 4;
 	let ySub = -4;
 
 	//declaring our height and width of our board the ball bounces off of
-	let boardHeight = 20;
-	let boardWidth = 205;
+	let boardHeight = 15;
+	let boardWidth = 175;
 	let boardX = (canvas.width - boardWidth) / 2;
 	//all brick traits. 8 columns, 6 rows, height
 	// and width of each, padding on sides, and space from the top and left
@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		//https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/PI
 		ctx.arc(x, y, ballSize, 0, Math.PI * 2);
 		//pick our ball color
-		ctx.fillStyle = 'rgb(92, 10, 10)';
+		ctx.fillStyle = 'grey';
 		//color it in
 		ctx.fill();
 		ctx.closePath();
@@ -110,7 +110,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	function createBoard() {
 		ctx.beginPath();
 		ctx.rect(boardX, canvas.height - boardHeight, boardWidth, boardHeight);
-		ctx.fillStyle = 'rgb(92, 10, 10)';
+		ctx.fillStyle = 'blue';
 		ctx.fill();
 		ctx.closePath();
 	}
@@ -126,7 +126,7 @@ document.addEventListener('DOMContentLoaded', function() {
 					bricks[c][r].y = brickY;
 					ctx.beginPath();
 					ctx.rect(brickX, brickY, brickWidth, brickHeight);
-					ctx.fillStyle = 'rgb(92, 10, 10)';
+					ctx.fillStyle = 'rgb(150, 10, 10)';
 					ctx.fill();
 					ctx.closePath();
 				}
